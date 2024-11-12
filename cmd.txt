@@ -1,0 +1,1 @@
+helm install chartmuseum/chartmuseum --debug  --set env.open.DISABLE_API=false
