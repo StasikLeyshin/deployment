@@ -30,7 +30,7 @@ deployment:
   command:
     - /bin/sh
     - -c
-    - cp -R /config /deploy
+    - cp -f -R /config /deploy
 
 
   environment:
