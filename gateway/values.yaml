@@ -30,7 +30,7 @@ deployment:
   command:
     - /bin/sh
     - -c
-    - if test -d /deploy/config; then rm -r /deploy/config; fi
+    #- if test -d /deploy/config; then rm -r /deploy/config; fi
     - cp -f -R /config /deploy
 
   environment:
