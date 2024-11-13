@@ -38,6 +38,8 @@ deployment:
       value: 'TRUE'
     - name: DEPLOY_PATH
       value: 'deploy'
+    - name: TEST
+      value: 'deploy'
 
 service:
   type: ClusterIP
