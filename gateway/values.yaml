@@ -19,7 +19,7 @@ deployment:
   volumeMounts:
     - name: vol
       mountPath: /deploy
-      readOnly: true
+      readOnly: false
 
   volumes: []
     # - name: foo
