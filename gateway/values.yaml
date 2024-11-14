@@ -9,7 +9,7 @@ namespace: default
 deployment:
   replicaCount: 1
   image:
-    image: 192.168.1.41/gateway:v0.0.17-6-g4e85297
+    image: 192.168.1.41/gateway:v0.0.17-7-gaa01e49
     pullPolicy: Always
     tag: ""
 
