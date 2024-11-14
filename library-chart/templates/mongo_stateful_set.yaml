@@ -1,0 +1,31 @@
+{{- if .Values.db.mongo.enabled -}}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Values.db.mongo.name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  serviceName: mongodb-service
+  replicas: {{ .Values.db.mongo.statefulSet.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.db.mongo.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.db.mongo.name }}
+    spec:
+      containers:
+        - name: {{ .Values.db.mongo.name }}
+          image: {{ .Values.db.mongo.statefulSet.image }}
+          ports:
+            - containerPort: {{ .Values.db.mongo.statefulSet.port }}
+          {{- with .Values.db.mongo.statefulSet.volumeMounts }}
+          volumeMounts:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+  {{- with .Values.db.mongo.statefulSet.volumeClaimTemplates }}
+  volumeClaimTemplates:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+{{- end }}

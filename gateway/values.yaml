@@ -9,7 +9,7 @@ namespace: default
 deployment:
   replicaCount: 1
   image:
-    image: 192.168.1.41/gateway:v0.0.17-7-gaa01e49
+    image: 192.168.1.41/gateway:v0.0.17-4-ge29d832
     pullPolicy: Always
     tag: ""
 
@@ -65,3 +65,29 @@ nameOverride: ""
 fullnameOverride: ""
 
 
+db:
+  mongo:
+    enabled: true
+    name: mongo
+
+    statefulSet:
+      replicas: 1
+
+      image: mongo:8.0
+      port: 27017
+      volumeMounts:
+        - name: mongodb-data
+          mountPath: /data/db
+
+      volumeClaimTemplates:
+        - metadata:
+            name: mongodb-data
+          spec:
+            #storageClassName: "fast"
+            accessModes: [ "ReadWriteOnce" ]
+            resources:
+              requests:
+                storage: 1Gi
+    service:
+      type: None
+      port: 5005

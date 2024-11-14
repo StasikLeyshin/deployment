@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.db.mongo.name }}-service
+spec:
+  selector:
+    app: {{ .Values.db.mongo.name }}
+  ports:
+    - name: {{ .Values.db.mongo.name }}
+      port: {{ .Values.db.mongo.statefulSet.port }}
+      targetPort: {{ .Values.db.mongo.statefulSet.port }}
+  clusterIP: {{ .Values.db.mongo.service.type }}
